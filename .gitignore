@@ -1,0 +1,12 @@
+*.o
+*.mod
+b0ref
+b0drv
+loopdrv*
+COLLIER-*/
+collier-*.tar.gz
+collier_output/
+*.cll
+*.coli
+*.dd
+b0.out
