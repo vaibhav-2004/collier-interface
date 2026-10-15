@@ -1,12 +1,18 @@
+# build artifacts
 *.o
 *.mod
 b0ref
 b0drv
-loopdrv*
+loopdrv
+loopdrv3
+loopdrv_ir1
+loopdrv_ir2
+b0.out
+# Collier itself - users download it separately
 COLLIER-*/
 collier-*.tar.gz
+# Collier runtime output
 collier_output/
 *.cll
 *.coli
 *.dd
-b0.out
