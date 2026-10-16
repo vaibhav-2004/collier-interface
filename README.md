@@ -47,3 +47,49 @@ SetDeltaUV_cll(0), SetDeltaIR_cll(0,0), mu^2 = SetMuUV2 = SetMuIR2.
 Always state mu. B0 is UV divergent and the massless-gluon D0 is IR
 divergent, so both finite parts depend on it. C0 with a massive internal
 line is finite in both senses and genuinely mu-independent.
+
+## Quick start
+
+    git clone https://github.com/vaibhav-2004/collier-interface.git
+    cd collier-interface
+
+    # 1. validate the plumbing without Collier (2 minutes)
+    gfortran -O2 -o b0ref fortran/b0ref.f90
+    cp fortran/reference.txt fortran/check.sh .
+    ./check.sh ./b0ref          # expect 15 OK
+
+    # 2. get Collier
+    wget https://collier.hepforge.org/downloads/collier-1.2.8.tar.gz
+    tar xzf collier-1.2.8.tar.gz
+    cd COLLIER-1.2.8/build && cmake .. && make -j4 && cd ../..
+
+    # 3. build the driver
+    export COL=$PWD/COLLIER-1.2.8
+    gfortran -O2 -I$COL/modules fortran/loopdrv.f90 -o loopdrv \
+             -L$COL -lcollier -Wl,-rpath,$COL
+    ./check.sh ./loopdrv        # expect 15 OK
+
+Needs gfortran >= 4.8 and cmake.
+
+## From Mathematica
+
+Edit the top of mathematica/collier_mathematica.m:
+
+    colExe = "/your/path/to/loopdrv";
+    colWSL = False;     (* True only if Mathematica is on Windows and
+                           the driver is in WSL; then colRun also needs
+                           your distro and user in the wsl call *)
+
+Then:
+
+    colValidate[];   (* the 15 B0 points *)
+    colSelfTest[];   (* C0 mu-independence, D0 IR behaviour *)
+
+Use the memoised B0c, C0c, D0c rather than B0col, C0col, D0col - each
+integral depends only on the phase-space point, not on the helicity
+configuration.
+
+## Note
+
+check.sh expects reference.txt in the current directory, so copy both out
+of fortran/ before running, as in the quick start.
