@@ -312,34 +312,3 @@ $\Delta_\epsilon = 1/\epsilon - \gamma_E + \ln 4\pi$.
 Different libraries split the $\Delta_\epsilon$ pole differently. When
 comparing against another implementation, compare **differences** of two
 values — the convention cancels.
-
----
-
-## Troubleshooting
-
-| symptom | cause | fix |
-|---|---|---|
-| `Can't open module file 'collier.mod'` | wrong `-I` path | `find $COL -name collier.mod` |
-| `undefined reference to b0_cll_` | wrong `-L`/`-l` | `nm libcollier.so \| grep -i b0` |
-| `error while loading shared libraries` | runtime path | add `-Wl,-rpath,$COL`, or `DYLD_LIBRARY_PATH` on macOS |
-| Fortran syntax errors | gfortran too old | needs ≥ 4.8 |
-| `check.sh` shows all zeros | banner parsing | the script already filters it; check the executable runs alone |
-| every value off by the same real constant | $\Delta_\epsilon$ convention | harmless — compare differences |
-| imaginary parts have the wrong sign | $i\varepsilon$ convention | check `Im B0 > 0` above threshold |
-| only spacelike points wrong, by $2\pi i$ | branch cut on the prefactor | compare against `b0ref` first |
-| COLI and DD disagree | inconsistent kinematics | build invariants from real momenta |
-
----
-
-## Platforms
-
-Tested on Linux (WSL2, Ubuntu 22.04, gfortran 11.4). macOS should work
-but is untested, as is Apple Silicon. Native Windows is not supported.
-
----
-
-## Credit
-
-COLLIER is by A. Denner, S. Dittmaier and L. Hofer —
-<https://collier.hepforge.org/>. It is **not** included here; the build
-instructions download it. Cite their papers if you use it.
