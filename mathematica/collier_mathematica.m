@@ -1,3 +1,5 @@
+(* ::Package:: *)
+
 (* ==================================================================== *)
 (*  COLLIER <-> MATHEMATICA INTERFACE                                   *)
 (*                                                                      *)
@@ -15,10 +17,12 @@
 (*  mu alongside any number you quote.                                  *)
 (* ==================================================================== *)
 
-Clear[colExe, colWSL, colRun, colParse,
+Clear[colExe, colWSL, colRun, colParse, finOf, c1Of, c2Of,
+      A0Full, B0Full, C0Full, D0Full, A0cF, B0cF, C0cF, D0cF,
       A0col, B0col, C0col, D0col,
       A0c, B0c, C0c, D0c, colClearCache,
       colValidate, colRefs, colSelfTest];
+
 
 (* ==================================================================== *)
 (* 1.  SETUP  --  EDIT THESE TWO LINES                                  *)
@@ -34,12 +38,19 @@ Print["driver : ", colExe];
 Print["via WSL: ", colWSL];
 Print["OS     : ", $OperatingSystem];
 
+
 (* ==================================================================== *)
 (* 2.  LOW-LEVEL CALL                                                   *)
 (*                                                                      *)
 (*  Collier prints a startup banner to stdout, so we keep only lines    *)
 (*  that start with a number/sign and take the last one.                *)
 (* ==================================================================== *)
+
+(* The driver prints SIX numbers:                                       *)
+(*    Re(fin) Im(fin)  Re(c1) Im(c1)  Re(c2) Im(c2)                     *)
+(* where  I = c2/eps^2 + c1/eps + fin.                                  *)
+(* colParse returns an association so nothing is silently discarded.    *)
+(* Collier also prints a startup banner, hence the numeric-line filter. *)
 
 colParse[out_String] := Module[{lines, good, nums},
   lines = StringSplit[out, "\n"];
@@ -49,14 +60,23 @@ colParse[out_String] := Module[{lines, good, nums},
      Return[$Failed]];
   nums = ToExpression /@ StringSplit[
            StringReplace[Last[good], {"E" -> "*^", "D" -> "*^"}]];
-  If[Length[nums] =!= 2,
-     Print["** could not parse: ", Last[good]]; Return[$Failed]];
-  Chop[nums[[1]] + I nums[[2]], 10^-14]
+  If[Length[nums] =!= 6,
+     Print["** expected 6 numbers, got ", Length[nums], ": ", Last[good]];
+     Return[$Failed]];
+  <|"fin" -> nums[[1]] + I nums[[2]],
+    "c1"  -> nums[[3]] + I nums[[4]],
+    "c2"  -> nums[[5]] + I nums[[6]]|>
 ];
+
+(* Convenience: pull one piece out of a result, or $Failed through.     *)
+finOf[r_] := If[r === $Failed, $Failed, r["fin"]];
+c1Of[r_]  := If[r === $Failed, $Failed, r["c1"]];
+c2Of[r_]  := If[r === $Failed, $Failed, r["c2"]];
 
 colRun[what_String, args_List] := Module[{cmd, res},
   cmd = Join[
-     If[colWSL, {"wsl", "-d", "Ubuntu-22.04", "-u", "vaibhav", "-e", colExe}, {colExe}],
+     If[colWSL, {"wsl", "-d", "Ubuntu-22.04", "-u", "vaibhav", "-e", colExe},
+                {colExe}],
      {what},
      ToString[N[#], CForm] & /@ args];
   res = RunProcess[cmd];
@@ -66,10 +86,11 @@ colRun[what_String, args_List] := Module[{cmd, res},
   colParse[res["StandardOutput"]]
 ];
 
+
 (* ==================================================================== *)
 (* 3.  THE FOUR INTEGRALS                                               *)
 (*                                                                      *)
-(*  Argument conventions, read off Collier own demo . f90: *)
+(*  Argument conventions, read off Collier's own demo.f90:              *)
 (*    pij  means  (p_i - p_j)^2                                         *)
 (*                                                                      *)
 (*    A0(m02)                                                           *)
@@ -81,16 +102,22 @@ colRun[what_String, args_List] := Module[{cmd, res},
 (*  TWO are the diagonals (the Mandelstams).  Easy to get wrong.        *)
 (* ==================================================================== *)
 
-A0col[m02_, mu2_] := colRun["A0", {m02, mu2}];
+(* *Full  -> association with "fin", "c1", "c2"                        *)
+(* plain  -> the finite part only, which is what most code wants        *)
 
-B0col[p10_, m02_, m12_, mu2_] := colRun["B0", {p10, m02, m12, mu2}];
-
-C0col[p10_, p21_, p20_, m02_, m12_, m22_, mu2_] :=
+A0Full[m02_, mu2_] := colRun["A0", {m02, mu2}];
+B0Full[p10_, m02_, m12_, mu2_] := colRun["B0", {p10, m02, m12, mu2}];
+C0Full[p10_, p21_, p20_, m02_, m12_, m22_, mu2_] :=
    colRun["C0", {p10, p21, p20, m02, m12, m22, mu2}];
-
-D0col[p10_, p21_, p32_, p30_, p20_, p31_,
-      m02_, m12_, m22_, m32_, mu2_] :=
+D0Full[p10_, p21_, p32_, p30_, p20_, p31_,
+       m02_, m12_, m22_, m32_, mu2_] :=
    colRun["D0", {p10, p21, p32, p30, p20, p31, m02, m12, m22, m32, mu2}];
+
+A0col[a__] := finOf[A0Full[a]];
+B0col[a__] := finOf[B0Full[a]];
+C0col[a__] := finOf[C0Full[a]];
+D0col[a__] := finOf[D0Full[a]];
+
 
 (* ==================================================================== *)
 (* 4.  MEMOISED VERSIONS  --  USE THESE                                 *)
@@ -107,18 +134,26 @@ D0col[p10_, p21_, p32_, p30_, p20_, p31_,
 (*  scale.                                                              *)
 (* ==================================================================== *)
 
-A0c[a__] := A0c[a] = A0col[a];
-B0c[a__] := B0c[a] = B0col[a];
-C0c[a__] := C0c[a] = C0col[a];
-D0c[a__] := D0c[a] = D0col[a];
+(* memoised: the Full versions cache, the plain ones read from them,    *)
+(* so a point is evaluated once however you ask for it                  *)
+A0cF[a__] := A0cF[a] = A0Full[a];
+B0cF[a__] := B0cF[a] = B0Full[a];
+C0cF[a__] := C0cF[a] = C0Full[a];
+D0cF[a__] := D0cF[a] = D0Full[a];
+
+A0c[a__] := finOf[A0cF[a]];
+B0c[a__] := finOf[B0cF[a]];
+C0c[a__] := finOf[C0cF[a]];
+D0c[a__] := finOf[D0cF[a]];
 
 colClearCache[] := (
-   Clear[A0c, B0c, C0c, D0c];
-   A0c[a__] := A0c[a] = A0col[a];
-   B0c[a__] := B0c[a] = B0col[a];
-   C0c[a__] := C0c[a] = C0col[a];
-   D0c[a__] := D0c[a] = D0col[a];
+   Clear[A0cF, B0cF, C0cF, D0cF];
+   A0cF[a__] := A0cF[a] = A0Full[a];
+   B0cF[a__] := B0cF[a] = B0Full[a];
+   C0cF[a__] := C0cF[a] = C0Full[a];
+   D0cF[a__] := D0cF[a] = D0Full[a];
    Print["cache cleared"]);
+
 
 (* ==================================================================== *)
 (* 5.  VALIDATION  --  the 15 B0 points                                 *)
@@ -160,6 +195,7 @@ colValidate[tol_: 10^-7] := Module[{mu2 = 172.5^2, got, ref, nbad = 0},
   Print[If[nbad == 0, "  ALL 15 AGREE", "  " <> ToString[nbad] <> " MISMATCHES"]];
   nbad == 0];
 
+
 (* ==================================================================== *)
 (* 6.  SELF-TEST FOR C0 AND D0                                          *)
 (*                                                                      *)
@@ -190,11 +226,12 @@ colSelfTest[] := Module[{mu2 = 172.5^2, mt2 = 29929., s, t, c1, c2, d1, d2},
   Print["   (equals minus the 1/eps coefficient - that is the check)"];
 
   Print["\n--- imaginary parts ---"];
-  Print["   C0 above threshold, Im != 0 : ", Chop[Im[c1]] =!= 0];
-  Print["   D0 above threshold, Im != 0 : ", Chop[Im[d1]] =!= 0];
+  Print["   C0 above threshold, Im != 0 : ", Abs[Im[c1]] > 10^-16];
+  Print["   D0 above threshold, Im != 0 : ", Abs[Im[d1]] > 10^-16];
   Print["   D0 spacelike,       Im == 0 : ",
-        Chop[Im[D0c[0., 0., mt2, mt2, -200000., t, 0., 0., mt2, mt2, mu2]]] === 0];
+        Abs[Im[D0c[0., 0., mt2, mt2, -200000., t, 0., 0., mt2, mt2, mu2]]] < 10^-16];
 ];
+
 
 (* ==================================================================== *)
 (* 7.  RUN                                                              *)
@@ -203,6 +240,8 @@ colSelfTest[] := Module[{mu2 = 172.5^2, mt2 = 29929., s, t, c1, c2, d1, d2},
 
 colValidate[];
 colSelfTest[];
+
+
 
 (* ==================================================================== *)
 (* 8.  HOW TO USE IN THE AMPLITUDE CODE                                 *)
@@ -231,6 +270,7 @@ colLoopArgs[k1_, k2_, pt_] := Module[{g, dot, s, t, mt2},
   mt2 = dot[pt, pt];
   <|"s" -> s, "t" -> t, "u" -> 2 mt2 - s - t, "mt2" -> mt2|>];
 
+
 (* ==================================================================== *)
 (* 9.  TIMING  --  check whether RunProcess is fast enough yet          *)
 (* ==================================================================== *)
@@ -246,4 +286,54 @@ colTiming[] := Module[{mu2 = 172.5^2, t1, t2},
   Print["speedup from cache: ", Round[t1/Max[t2, 10.^-6]], "x"];
   Print["\nIf the per-call time is above ~10 ms, LibraryLink will be"];
   Print["needed for a phase-space scan.  Validate this interface first."];
+];
+
+
+(* ==================================================================== *)
+(* 10.  POLE STRUCTURE                                                  *)
+(*                                                                      *)
+(*  The driver returns  I = c2/eps^2 + c1/eps + fin.  These are the IR  *)
+(*  poles that must cancel against real emission, so they are needed    *)
+(*  for the virtual correction, not just nice to have.                  *)
+(*                                                                      *)
+(*  Useful sanity rules:                                                *)
+(*    B0  -> c1 = 1 exactly, c2 = 0        (B0 = Delta_eps + fin)       *)
+(*    A0(m^2) -> c1 = m^2, c2 = 0                                       *)
+(*    C0 with all internal lines massive -> finite, c1 = c2 = 0         *)
+(*    D0 with two massless internal lines -> both poles present         *)
+(*    D0 with one massless internal line  -> finite                     *)
+(*  and every c2 should come out purely REAL: the leading soft-collinear*)
+(*  pole carries no phase.                                              *)
+(* ==================================================================== *)
+
+colPoles[r_] := If[r === $Failed, Print["** failed"],
+  Print["   fin   = ", ScientificForm[N[r["fin"]], 8]];
+  Print["   1/eps = ", ScientificForm[N[r["c1"]], 8]];
+  Print["   1/e^2 = ", ScientificForm[N[r["c2"]], 8]];
+  If[Abs[Im[r["c2"]]] > 10^-16,
+     Print["   ** c2 has an imaginary part - unexpected"]];
+  r];
+
+colPoleTable[mu2_: 172.5^2] := Module[
+  {s = 1000000., t = -391997.844, u = -548131.156, m = 29929., row},
+  row[lbl_, res_] := If[res === $Failed, {lbl, "failed", "", ""},
+    {lbl, ScientificForm[N[res["fin"]], 5],
+          ScientificForm[N[res["c1"]], 5],
+          ScientificForm[N[res["c2"]], 5]}];
+  Print[Grid[Join[
+    {{"integral", "finite", "1/eps", "1/eps^2"}},
+    {row["A0(mt^2)",              A0cF[m, mu2]]},
+    {row["B0(s; 0,0)",            B0cF[s, 0., 0., mu2]]},
+    {row["B0(s; mt,mt)",          B0cF[s, m, m, mu2]]},
+    {row["B0(t; 0,mt)",           B0cF[t, 0., m, mu2]]},
+    {row["B0(u; 0,mt)",           B0cF[u, 0., m, mu2]]},
+    {row["B0(mt^2; 0,mt)",        B0cF[m, 0., m, mu2]]},
+    {row["C0(0,0,s; 0,0,0)",      C0cF[0., 0., s, 0., 0., 0., mu2]]},
+    {row["C0(0,0,s; mt,mt,mt)",   C0cF[0., 0., s, m, m, m, mu2]]},
+    {row["C0(mt2,mt2,s; mt,0,mt)",C0cF[m, m, s, m, 0., m, mu2]]},
+    {row["C0(0,mt2,t; 0,0,mt)",   C0cF[0., m, t, 0., 0., m, mu2]]},
+    {row["D0 t-ch, 2 massless",   D0cF[0., 0., m, m, s, t, 0., 0., m, m, mu2]]},
+    {row["D0 u-ch, 2 massless",   D0cF[0., 0., m, m, s, u, 0., 0., m, m, mu2]]},
+    {row["D0 t-ch, 1 massless",   D0cF[0., 0., m, m, s, t, 0., m, m, m, mu2]]}],
+   Frame -> All, Alignment -> Left]];
 ];
