@@ -1,0 +1,279 @@
+
+SetDelayed::wrsym: Symbol Discard is Protected.
+
+FeynArts 3.11 (25 Mar 2022)
+by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
+
+FormCalc 9.10 (16 Jan 2023)
+by Thomas Hahn
+
+loading generic model file /home/vaibhav/collier_work/FeynArts-3.11/Models/Lorentz.gen
+> $GenericMixing is OFF
+generic model {Lorentz} initialized
+
+loading classes model file /home/vaibhav/collier_work/FeynArts-3.11/Models/SMQCD.mod
+  loading classes model file /home/vaibhav/collier_work/FeynArts-3.11/Models/SM.mod
+
+$CKM = False
+
+> 49 particles (incl. antiparticles) in 18 classes
+> $CounterTerms are ON
+> 93 vertices
+> 121 counterterms of order 1
+> 6 counterterms of order 2
+classes model {SMQCD} initialized
+
+creating amplitudes at level(s) {Classes}
+> Top. 1: 1 Classes amplitude
+> Top. 2: 2 Classes amplitudes
+> Top. 3: 2 Classes amplitudes
+> Top. 4: 2 Classes amplitudes
+> Top. 5: 2 Classes amplitudes
+> Top. 6: 2 Classes amplitudes
+> Top. 7: 7 Classes amplitudes
+> Top. 8: 2 Classes amplitudes
+> Top. 9: 2 Classes amplitudes
+> Top. 10: 2 Classes amplitudes
+> Top. 11: 1 Classes amplitude
+> Top. 12: 1 Classes amplitude
+> Top. 13: 1 Classes amplitude
+> Top. 14: 1 Classes amplitude
+> Top. 15: 4 Classes amplitudes
+> Top. 16: 1 Classes amplitude
+> Top. 17: 1 Classes amplitude
+in total: 34 Classes amplitudes
+
+preparing FORM code in /home/vaibhav/collier_work/fc-amp-1.frm
+running FORM... 
+ok
+
+
+=== TASK 1a: 222 distinct loop integrals ===
+  A0[Mf2[3, Gen5]]
+  A0[Mf2[4, Gen5]]
+  B0i[bb0, 0, 0, 0]
+  B0i[bb0, S, 0, 0]
+  B0i[bb0, S, MT2, MT2]
+  B0i[bb0, S, Mf2[3, Gen5], Mf2[3, Gen5]]
+  B0i[bb0, S, Mf2[4, Gen5], Mf2[4, Gen5]]
+  B0i[bb0, T, 0, MT2]
+  B0i[bb0, U, 0, MT2]
+  B0i[bb00, S, 0, 0]
+  B0i[bb00, S, Mf2[3, Gen5], Mf2[3, Gen5]]
+  B0i[bb00, S, Mf2[4, Gen5], Mf2[4, Gen5]]
+  B0i[bb1, S, 0, 0]
+  B0i[bb1, S, Mf2[3, Gen5], Mf2[3, Gen5]]
+  B0i[bb1, S, Mf2[4, Gen5], Mf2[4, Gen5]]
+  B0i[bb1, T, 0, MT2]
+  B0i[bb1, U, 0, MT2]
+  C0i[cc0, 0, MT2, T, 0, 0, MT2]
+  C0i[cc0, 0, S, 0, 0, 0, 0]
+  C0i[cc0, 0, T, MT2, 0, 0, MT2]
+  C0i[cc0, 0, U, MT2, 0, 0, MT2]
+  C0i[cc0, MT2, 0, T, 0, MT2, MT2]
+  C0i[cc0, MT2, 0, U, 0, MT2, MT2]
+  C0i[cc0, MT2, S, MT2, 0, MT2, MT2]
+  C0i[cc0, S, MT2, MT2, 0, 0, MT2]
+  C0i[cc0, T, 0, MT2, 0, MT2, MT2]
+  C0i[cc00, 0, S, 0, 0, 0, 0]
+  C0i[cc00, 0, S, 0, Mf2[3, Gen5], Mf2[3, Gen5], Mf2[3, Gen5]]
+  C0i[cc00, 0, S, 0, Mf2[4, Gen5], Mf2[4, Gen5], Mf2[4, Gen5]]
+  C0i[cc00, 0, T, MT2, 0, 0, MT2]
+  C0i[cc00, 0, U, MT2, 0, 0, MT2]
+  C0i[cc00, MT2, 0, T, 0, MT2, MT2]
+  C0i[cc00, MT2, 0, U, 0, MT2, MT2]
+  C0i[cc00, MT2, S, MT2, 0, MT2, MT2]
+  C0i[cc00, S, MT2, MT2, 0, 0, MT2]
+  C0i[cc001, 0, S, 0, 0, 0, 0]
+  C0i[cc001, 0, S, 0, Mf2[3, Gen5], Mf2[3, Gen5], Mf2[3, Gen5]]
+  C0i[cc001, 0, S, 0, Mf2[4, Gen5], Mf2[4, Gen5], Mf2[4, Gen5]]
+  C0i[cc002, 0, S, 0, 0, 0, 0]
+  C0i[cc002, 0, S, 0, Mf2[3, Gen5], Mf2[3, Gen5], Mf2[3, Gen5]]
+  C0i[cc002, 0, S, 0, Mf2[4, Gen5], Mf2[4, Gen5], Mf2[4, Gen5]]
+  C0i[cc1, 0, MT2, T, 0, 0, MT2]
+  C0i[cc1, 0, S, 0, 0, 0, 0]
+  C0i[cc1, 0, T, MT2, 0, 0, MT2]
+  C0i[cc1, 0, U, MT2, 0, 0, MT2]
+  C0i[cc1, MT2, 0, T, 0, MT2, MT2]
+  C0i[cc1, MT2, 0, U, 0, MT2, MT2]
+  C0i[cc1, MT2, S, MT2, 0, MT2, MT2]
+  C0i[cc1, S, MT2, MT2, 0, 0, MT2]
+  C0i[cc1, T, 0, MT2, 0, MT2, MT2]
+  C0i[cc11, 0, S, 0, 0, 0, 0]
+  C0i[cc11, MT2, 0, T, 0, MT2, MT2]
+  C0i[cc11, MT2, 0, U, 0, MT2, MT2]
+  C0i[cc11, MT2, S, MT2, 0, MT2, MT2]
+  C0i[cc112, 0, S, 0, 0, 0, 0]
+  C0i[cc112, 0, S, 0, Mf2[3, Gen5], Mf2[3, Gen5], Mf2[3, Gen5]]
+  C0i[cc112, 0, S, 0, Mf2[4, Gen5], Mf2[4, Gen5], Mf2[4, Gen5]]
+  C0i[cc12, 0, S, 0, 0, 0, 0]
+  C0i[cc12, 0, S, 0, Mf2[3, Gen5], Mf2[3, Gen5], Mf2[3, Gen5]]
+  C0i[cc12, 0, S, 0, Mf2[4, Gen5], Mf2[4, Gen5], Mf2[4, Gen5]]
+  C0i[cc12, 0, T, MT2, 0, 0, MT2]
+  C0i[cc12, 0, U, MT2, 0, 0, MT2]
+  C0i[cc12, MT2, 0, T, 0, MT2, MT2]
+  C0i[cc12, MT2, 0, U, 0, MT2, MT2]
+  C0i[cc12, MT2, S, MT2, 0, MT2, MT2]
+  C0i[cc122, 0, S, 0, 0, 0, 0]
+  C0i[cc122, 0, S, 0, Mf2[3, Gen5], Mf2[3, Gen5], Mf2[3, Gen5]]
+  C0i[cc122, 0, S, 0, Mf2[4, Gen5], Mf2[4, Gen5], Mf2[4, Gen5]]
+  C0i[cc2, 0, MT2, T, 0, 0, MT2]
+  C0i[cc2, 0, S, 0, 0, 0, 0]
+  C0i[cc2, 0, T, MT2, 0, 0, MT2]
+  C0i[cc2, 0, U, MT2, 0, 0, MT2]
+  C0i[cc2, MT2, 0, T, 0, MT2, MT2]
+  C0i[cc2, MT2, 0, U, 0, MT2, MT2]
+  C0i[cc2, MT2, S, MT2, 0, MT2, MT2]
+  C0i[cc2, S, MT2, MT2, 0, 0, MT2]
+  C0i[cc2, T, 0, MT2, 0, MT2, MT2]
+  C0i[cc22, 0, S, 0, 0, 0, 0]
+  C0i[cc22, 0, T, MT2, 0, 0, MT2]
+  C0i[cc22, 0, U, MT2, 0, 0, MT2]
+  C0i[cc22, MT2, 0, T, 0, MT2, MT2]
+  C0i[cc22, MT2, 0, U, 0, MT2, MT2]
+  C0i[cc22, MT2, S, MT2, 0, MT2, MT2]
+  C0i[cc22, S, MT2, MT2, 0, 0, MT2]
+  D0i[dd0, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd0, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd0, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd0, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd0, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd0, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd00, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd00, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd00, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd00, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd00, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd00, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd001, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd001, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd001, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd001, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd001, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd001, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd002, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd002, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd002, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd002, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd002, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd002, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd003, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd003, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd003, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd003, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd003, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd003, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd1, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd1, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd1, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd1, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd1, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd1, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd11, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd11, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd11, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd11, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd11, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd11, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd111, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd111, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd112, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd112, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd112, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd112, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd112, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd112, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd113, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd113, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd113, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd113, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd113, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd113, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd12, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd12, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd12, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd12, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd12, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd12, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd122, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd122, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd122, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd122, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd122, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd122, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd123, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd123, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd123, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd123, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd123, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd123, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd13, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd13, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd13, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd13, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd13, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd13, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd133, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd133, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd133, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd133, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd133, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd133, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd2, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd2, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd2, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd2, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd2, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd2, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd22, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd22, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd22, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd22, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd22, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd22, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd222, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd222, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd222, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd222, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd223, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd223, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd223, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd223, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd223, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd223, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd23, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd23, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd23, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd23, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd23, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd23, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd233, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd233, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd233, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd233, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd233, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd233, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd3, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd3, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd3, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd3, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd3, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd3, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd33, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd33, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd33, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd33, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd33, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd33, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd333, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd333, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd333, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd333, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd333, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd333, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+
+=== which coefficient types appear ===
+{bb0, bb00, bb1, cc0, cc00, cc001, cc002, cc1, cc11, cc112, cc12, cc122, cc2, cc22, dd0, dd00, dd001, dd002, dd003, dd1, dd11, dd111, dd112, dd113, dd12, dd122, dd123, dd13, dd133, dd2, dd22, dd222, dd223, dd23, dd233, dd3, dd33, dd333}
+
+=== colour structures ===
+{SUNT[Col3, Col4], SUNT[Glu1, Glu2, 0, 0], SUNT[Glu1, Glu2, Col3, Col4], SUNT[Glu2, Glu1, Col3, Col4]}
