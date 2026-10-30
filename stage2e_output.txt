@@ -1,0 +1,95 @@
+
+SetDelayed::wrsym: Symbol Discard is Protected.
+
+FeynArts 3.11 (25 Mar 2022)
+by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
+
+FormCalc 9.10 (16 Jan 2023)
+by Thomas Hahn
+computing one loop with PaVeReduce...
+
+loading generic model file /home/vaibhav/collier_work/FeynArts-3.11/Models/Lorentz.gen
+> $GenericMixing is OFF
+generic model {Lorentz} initialized
+
+loading classes model file /home/vaibhav/collier_work/FeynArts-3.11/Models/SMQCD.mod
+  loading classes model file /home/vaibhav/collier_work/FeynArts-3.11/Models/SM.mod
+
+$CKM = False
+
+> 49 particles (incl. antiparticles) in 18 classes
+> $CounterTerms are ON
+> 93 vertices
+> 121 counterterms of order 1
+> 6 counterterms of order 2
+classes model {SMQCD} initialized
+
+creating amplitudes at level(s) {Classes}
+> Top. 1: 1 Classes amplitude
+> Top. 2: 2 Classes amplitudes
+> Top. 3: 2 Classes amplitudes
+> Top. 4: 2 Classes amplitudes
+> Top. 5: 2 Classes amplitudes
+> Top. 6: 2 Classes amplitudes
+> Top. 7: 7 Classes amplitudes
+> Top. 8: 2 Classes amplitudes
+> Top. 9: 2 Classes amplitudes
+> Top. 10: 2 Classes amplitudes
+> Top. 11: 1 Classes amplitude
+> Top. 12: 1 Classes amplitude
+> Top. 13: 1 Classes amplitude
+> Top. 14: 1 Classes amplitude
+> Top. 15: 4 Classes amplitudes
+> Top. 16: 1 Classes amplitude
+> Top. 17: 1 Classes amplitude
+in total: 34 Classes amplitudes
+
+preparing FORM code in /home/vaibhav/collier_work/fc-amp-1.frm
+running FORM... 
+ok
+
+
+=== integrals: 34 ===
+  A0[MT2]
+  A0[Mf2[3, Gen5]]
+  A0[Mf2[4, Gen5]]
+  B0i[bb0, 0, 0, 0]
+  B0i[bb0, 0, MT2, MT2]
+  B0i[bb0, 0, Mf2[3, Gen5], Mf2[3, Gen5]]
+  B0i[bb0, 0, Mf2[4, Gen5], Mf2[4, Gen5]]
+  B0i[bb0, MT2, 0, MT2]
+  B0i[bb0, S, 0, 0]
+  B0i[bb0, S, MT2, MT2]
+  B0i[bb0, S, Mf2[3, Gen5], Mf2[3, Gen5]]
+  B0i[bb0, S, Mf2[4, Gen5], Mf2[4, Gen5]]
+  B0i[bb0, T, 0, MT2]
+  B0i[bb0, U, 0, MT2]
+  C0i[cc0, 0, MT2, T, 0, 0, MT2]
+  C0i[cc0, 0, MT2, U, 0, 0, MT2]
+  C0i[cc0, 0, S, 0, 0, 0, 0]
+  C0i[cc0, 0, S, 0, MT2, MT2, MT2]
+  C0i[cc0, 0, S, 0, Mf2[3, Gen5], Mf2[3, Gen5], Mf2[3, Gen5]]
+  C0i[cc0, 0, S, 0, Mf2[4, Gen5], Mf2[4, Gen5], Mf2[4, Gen5]]
+  C0i[cc0, 0, T, MT2, 0, 0, MT2]
+  C0i[cc0, 0, U, MT2, 0, 0, MT2]
+  C0i[cc0, MT2, 0, T, 0, MT2, MT2]
+  C0i[cc0, MT2, 0, U, 0, MT2, MT2]
+  C0i[cc0, MT2, S, MT2, 0, MT2, MT2]
+  C0i[cc0, S, MT2, MT2, 0, 0, MT2]
+  C0i[cc0, T, 0, MT2, 0, MT2, MT2]
+  C0i[cc0, U, 0, MT2, 0, MT2, MT2]
+  D0i[dd0, 0, S, MT2, T, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd0, 0, S, MT2, U, 0, MT2, 0, 0, 0, MT2]
+  D0i[dd0, 0, T, 0, U, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd0, 0, U, 0, T, MT2, MT2, 0, 0, MT2, MT2]
+  D0i[dd0, T, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+  D0i[dd0, U, 0, S, MT2, MT2, 0, 0, MT2, MT2, MT2]
+
+=== heads appearing ===
+{A0, B0i, C0i, D0i, Mf2}
+
+=== any tensor coefficients left? ===
+{bb0, cc0, dd0}
+
+=== colour structures ===
+{SUNT[Col3, Col4], SUNT[Glu1, Glu2, 0, 0], SUNT[Glu1, Glu2, Col3, Col4], SUNT[Glu2, Glu1, Col3, Col4]}
