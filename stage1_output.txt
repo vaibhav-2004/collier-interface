@@ -1,0 +1,79 @@
+
+SetDelayed::wrsym: Symbol Discard is Protected.
+
+FeynArts 3.11 (25 Mar 2022)
+by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
+
+loading generic model file /home/vaibhav/collier_work/FeynArts-3.11/Models/Lorentz.gen
+> $GenericMixing is OFF
+generic model {Lorentz} initialized
+
+loading classes model file /home/vaibhav/collier_work/FeynArts-3.11/Models/SMQCD.mod
+  loading classes model file /home/vaibhav/collier_work/FeynArts-3.11/Models/SM.mod
+
+$CKM = False
+
+> 49 particles (incl. antiparticles) in 18 classes
+> $CounterTerms are ON
+> 93 vertices
+> 121 counterterms of order 1
+> 6 counterterms of order 2
+classes model {SMQCD} initialized
+
+inserting at level(s) {Classes}
+> Top. 1: 0 Classes insertions
+> Top. 2: 1 Classes insertion
+> Top. 3: 1 Classes insertion
+> Top. 4: 1 Classes insertion
+in total: 3 Classes insertions
+
+Excluding 0 Generic, 12 Classes, and 20 Particles fields
+
+inserting at level(s) {Classes}
+> Top. 1: 0 Classes insertions
+> Top. 2: 0 Classes insertions
+> Top. 3: 0 Classes insertions
+> Top. 4: 0 Classes insertions
+> Top. 5: 0 Classes insertions
+> Top. 6: 1 Classes insertion
+> Top. 7: 2 Classes insertions
+> Top. 8: 2 Classes insertions
+> Top. 9: 2 Classes insertions
+> Top. 10: 2 Classes insertions
+> Top. 11: 2 Classes insertions
+> Top. 12: 7 Classes insertions
+> Top. 13: 2 Classes insertions
+> Top. 14: 2 Classes insertions
+> Top. 15: 2 Classes insertions
+> Top. 16: 0 Classes insertions
+> Top. 17: 0 Classes insertions
+> Top. 18: 0 Classes insertions
+> Top. 19: 1 Classes insertion
+> Top. 20: 0 Classes insertions
+> Top. 21: 0 Classes insertions
+> Top. 22: 0 Classes insertions
+> Top. 23: 0 Classes insertions
+> Top. 24: 0 Classes insertions
+> Top. 25: 0 Classes insertions
+> Top. 26: 0 Classes insertions
+> Top. 27: 0 Classes insertions
+> Top. 28: 0 Classes insertions
+> Top. 29: 0 Classes insertions
+> Top. 30: 0 Classes insertions
+> Top. 31: 0 Classes insertions
+> Top. 32: 1 Classes insertion
+> Top. 33: 0 Classes insertions
+> Top. 34: 0 Classes insertions
+> Top. 35: 0 Classes insertions
+> Top. 36: 0 Classes insertions
+> Top. 37: 1 Classes insertion
+> Top. 38: 0 Classes insertions
+> Top. 39: 1 Classes insertion
+> Top. 40: 4 Classes insertions
+> Top. 41: 1 Classes insertion
+> Top. 42: 1 Classes insertion
+
+Restoring 0 Generic, 12 Classes, and 20 Particles fields
+in total: 34 Classes insertions
+
+saved /home/vaibhav/collier_work/feynarts_stage1.mx
